@@ -13,7 +13,7 @@ public class MaizRun {
 		Astar as =new Astar( new MazeDomain( maze ) );
 		ArrayList<Action> actions = as.search(maze.getStartState() , maze.getGoalState() );
 		for (Action a : actions)
-		System.out.println(a.getName());
+		System.out.println(a.getName()+" Start");
 	}
 
 }
