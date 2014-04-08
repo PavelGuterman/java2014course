@@ -2,7 +2,7 @@ package maze;
 
 import java.lang.reflect.Array;
 
-import a_star.State;
+import model.algorithms.State;
 
 public class Maze {
 	private final int empty = 0;

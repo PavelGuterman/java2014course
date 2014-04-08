@@ -1,18 +1,22 @@
-package a_star;
+package model.algorithms.a_star;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-import a_star.State;
+import a_star.IllegalActionExeption;
+import model.algorithms.Action;
+import model.algorithms.Domain;
+import model.algorithms.State;
 
 public class Astar {
 	
 	private Domain domain;
-	private  PriorityQueue<State> state_openList;
-	private  HashMap<String, State> state_closeList;
+	private PriorityQueue<State> state_openList;
+	private HashSet<State> state_closeList;
 	
 	public Domain getDomain() {
 		return domain;
@@ -26,10 +30,10 @@ public class Astar {
 	public void setState_openList(PriorityQueue<State> state_openList) {
 		this.state_openList = state_openList;
 	}
-	public HashMap<String, State> getState_closeList() {
+	public HashSet<State> getState_closeList() {
 		return state_closeList;
 	}
-	public void setState_closeList(HashMap<String, State> state_closeList) {
+	public void setState_closeList(HashSet<State> state_closeList) {
 		this.state_closeList = state_closeList;
 	}
 
@@ -37,7 +41,7 @@ public class Astar {
 		this.domain = domain;
 		state_openList = new PriorityQueue<State>();
 		
-		state_closeList = new HashMap<String, State>();
+		state_closeList = new HashSet<State>();
 	}
 	
 	
@@ -48,21 +52,21 @@ public class Astar {
 		state_openList.add(start);
 		while(!state_openList.isEmpty()){
 			State q = state_openList.poll();
-			if (q.state.equals(goal.state)){
-				return reconstruct_path(q,q.came_from);
+			if (q.getState().equals(goal.getState())){
+				return reconstruct_path(q,q.getCame_from());
 			}
-			state_closeList.put(q.getState(), q);
+			state_closeList.add(q);
 			for(Action act: domain.getActions(q))
 			{
 				State q_tag = act.doAction(q);
 				double ten_g = q.getG() + domain.getRange(q,q_tag);
-				if (state_closeList.containsKey(q_tag.getState()) 
+				if (state_closeList.contains(q_tag.getState()) 
 						&& ten_g >= q_tag.getG()){
 					continue;
 				}
 				boolean flag = false;
 				for (State st : state_openList) {
-					if (st.state.equals(q_tag.state)) {
+					if (st.getState().equals(q_tag.getState())) {
 						flag = true;
 						break;
 					}
@@ -93,7 +97,7 @@ public class Astar {
 		while(son != null){
 			stack.add(domain.getAction(goal, son));
 			goal = son;
-			son = son.came_from;
+			son = son.getCame_from();
 		}
 		
 		ArrayList<Action> arryActions = new ArrayList<Action>();

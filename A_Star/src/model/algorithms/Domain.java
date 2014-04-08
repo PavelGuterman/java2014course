@@ -1,4 +1,4 @@
-package a_star;
+package model.algorithms;
 
 import java.util.ArrayList;
 

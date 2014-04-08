@@ -1,4 +1,4 @@
-package a_star;
+package model.algorithms;
 
 public class State implements Comparable<State> {
 	private double f;

@@ -2,11 +2,11 @@ package maze;
 
 import java.util.ArrayList;
 
-import a_star.Action;
-import a_star.Domain;
+import model.algorithms.Action;
+import model.algorithms.Domain;
+import model.algorithms.State;
 import a_star.IllegalActionExeption;
 //import a_star.IllegalActionExeption;
-import a_star.State;
 
 public class MazeDomain implements Domain {
 

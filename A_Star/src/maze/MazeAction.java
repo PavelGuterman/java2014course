@@ -2,10 +2,11 @@ package maze;
 
 import java.lang.reflect.InvocationTargetException;
 import java.rmi.UnexpectedException;
+
+import model.algorithms.Action;
+import model.algorithms.State;
 import moveAction.mazeActionMove;
-import a_star.Action;
 import a_star.IllegalActionExeption;
-import a_star.State;
 
 public class MazeAction implements Action {
 
