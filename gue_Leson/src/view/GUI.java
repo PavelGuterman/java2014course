@@ -6,6 +6,8 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -76,22 +78,39 @@ public class GUI extends Thread {
 
 		final Canvas canvas = new Canvas(shell, SWT.BORDER);
 		canvas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		final Maze maze = new Maze();
 
 		canvas.addPaintListener(new PaintListener() {
-			
+
 			@Override
 			public void paintControl(PaintEvent e) {
-				Maze maze = new Maze();
-				
-				int mazeRows= maze.getRows();
+
+				int mazeRows = maze.getRows();
 				int mazeColoms = maze.getColoms();
+
+				Canvas c = (Canvas) e.widget;
+				c.setBackground(new Color(null, 255, 255, 255));
+				//e.gc.setBackground(new Color(null, 0, 0, 0));
+				
+				int Max_x=c.getSize().x;
+				int Max_y=c.getSize().y;
+				
+				int rx=Math.round(Max_x/mazeRows);
+				int ry=Math.round(Max_y/mazeColoms);
+				
 				
 				for (int i = 0; i < mazeColoms; i++) {
 					for (int j = 0; j < mazeRows; j++) {
-						Canvas c = new Canvas(canvas,SWT.BORDER);
-						c.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+						if (maze.getPoin(i, j) == maze.getWall()) {
+							e.gc.setBackground(new Color(null, 0, 0, 0));
+							e.gc.fillRectangle(j*rx, i*ry, rx, ry);	
+							//e.gc.drawLine(j*rx, i*ry,(j+1)*rx, (i+1)*ry);
+						}else{
+							e.gc.setBackground(new Color(null, 224, 224, 224));
+							e.gc.fillRectangle(j*rx, i*ry, rx, ry);
+							//e.gc.drawLine(j*rx, i*ry,(j+1)*rx, (i+1)*ry);
+						}
 					}
-				
 				}
 			}
 		});

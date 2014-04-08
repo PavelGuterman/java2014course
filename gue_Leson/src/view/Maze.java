@@ -57,7 +57,6 @@ public class Maze {
 			for (int j = 0; j < rows; j++) {
 				maze[i][j] = getEmpty();
 			}
-			System.out.println("");
 		}
 		
 		for(int i = 0; i < 9; i++){
@@ -66,6 +65,7 @@ public class Maze {
 			maze[4][i] = getWall();
 			
 		}
+		maze[6][3] = getEmpty();
 		maze[5][0] = getCheese();
 		maze[7][0] = getMouse();
 
@@ -75,9 +75,9 @@ public class Maze {
 	public void PrintMazeToConsole() {
 		for (int i = 0; i < coloms; i++) {
 			for (int j = 0; j < rows; j++) {
-				System.out.print(maze[i][j] + ",");
+				//System.out.print(maze[i][j] + ",");
 			}
-			System.out.println("");
+			//System.out.println("");
 		}
 	}
 
