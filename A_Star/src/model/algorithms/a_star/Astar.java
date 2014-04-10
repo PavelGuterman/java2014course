@@ -1,54 +1,78 @@
 package model.algorithms.a_star;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-import a_star.IllegalActionExeption;
 import model.algorithms.Action;
+import model.algorithms.Distance;
 import model.algorithms.Domain;
 import model.algorithms.State;
+import a_star.IllegalActionExeption;
 
 public class Astar {
 	
 	private Domain domain;
 	private PriorityQueue<State> state_openList;
 	private HashSet<State> state_closeList;
+	private Distance g;
+	private Distance h;
+	
+	public Distance getG() {
+		return g;
+	}
+	
+	public void setG(Distance g) {
+		this.g = g;
+	}
+	
+	public Distance getH() {
+		return h;
+	}
+	
+	public void setH(Distance h) {
+		this.h = h;
+	}
 	
 	public Domain getDomain() {
 		return domain;
 	}
+	
 	public void setDomain(Domain domain) {
 		this.domain = domain;
 	}
+	
 	public PriorityQueue<State> getState_openList() {
 		return state_openList;
 	}
+	
 	public void setState_openList(PriorityQueue<State> state_openList) {
 		this.state_openList = state_openList;
 	}
+	
 	public HashSet<State> getState_closeList() {
 		return state_closeList;
 	}
+	
 	public void setState_closeList(HashSet<State> state_closeList) {
 		this.state_closeList = state_closeList;
 	}
 
-	public Astar(Domain domain){
+	public Astar(Domain domain,Distance g,Distance h){
 		this.domain = domain;
 		state_openList = new PriorityQueue<State>();
-		
-		state_closeList = new HashSet<State>();
+		state_closeList = new HashSet<State>();	
+		this.g = g;
+		this.h = h;
 	}
 	
 	
 	public ArrayList<Action> search(State start, State goal) throws IllegalActionExeption{
 		
 		start.setG(0);
-		start.setF(domain.g(start, start) + domain.h(start, goal));
+		start.setF(g.getDistance(start, start)+ h.getDistance(start, goal));
+//		start.setF(domain.g(start, start) + domain.h(start, goal));
 		state_openList.add(start);
 		while(!state_openList.isEmpty()){
 			State q = state_openList.poll();
