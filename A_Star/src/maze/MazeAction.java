@@ -38,7 +38,7 @@ public class MazeAction implements Action {
 	}
 
 	@Override
-	public State doAction(State state) throws IllegalActionExeption {
+	public State doAction(State state)  {
 		int[] s = new int[2];
 		s[0] = Integer.parseInt((state.getState().split(","))[0]);
 		s[1] = Integer.parseInt((state.getState().split(","))[1]);
@@ -52,20 +52,21 @@ public class MazeAction implements Action {
 	}
 
 
-	private int[] doMoveAction(String actionName, int[] pos) throws IllegalActionExeption {
+	private int[] doMoveAction(String actionName, int[] pos) {
 		/*
 		 * by relation 
 		 */
-		Class<mazeActionMove> classAction;
 		try {
+			Class<mazeActionMove> classAction;
 			classAction = (Class<mazeActionMove>) Class.forName("moveAction." + actionName);
+			
 			return  (int[]) classAction.getMethod("doMoveAction",
 					pos.getClass()).invoke(
 					classAction.getConstructor().newInstance(), pos);
 		} catch (Exception e) {
-			throw (IllegalActionExeption) e  ;
+			e.printStackTrace();
 		}
-
+		return null;
 	}
 
 	@Override

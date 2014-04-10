@@ -8,6 +8,7 @@ public abstract class AbsSearcher implements Searcher {
 	
 	private PriorityQueue<State> state_openList;
 	private HashSet<State> state_closeList;
+	private int evaluatedNodesNum = 0;
 	
 	public PriorityQueue<State> getState_openList() {
 		return state_openList;
@@ -15,6 +16,7 @@ public abstract class AbsSearcher implements Searcher {
 
 	public void setState_openList(PriorityQueue<State> state_openList) {
 		this.state_openList = state_openList;
+		evaluatedNodesNum++;
 	}
 
 	public HashSet<State> getState_closeList() {
@@ -26,14 +28,11 @@ public abstract class AbsSearcher implements Searcher {
 	}
 
 	@Override
-	public ArrayList<Action> search(State start, State goal) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract ArrayList<Action> search(State start, State goal);
 
 	@Override
 	public int getNumOfEvaluatedNodes() {
-		return 0;
+		return evaluatedNodesNum;
 	}
 
 }

@@ -6,6 +6,7 @@ import model.algorithms.Action;
 import model.algorithms.Domain;
 import model.algorithms.State;
 import a_star.IllegalActionExeption;
+
 //import a_star.IllegalActionExeption;
 
 public class MazeDomain implements Domain {
@@ -43,7 +44,7 @@ public class MazeDomain implements Domain {
 		int state_i[] = getPosition(state);
 
 		boolean isUp = state_i[0] > 0;
-		boolean isDown = state_i[0] + 1 <  maze.getColoms();
+		boolean isDown = state_i[0] + 1 < maze.getColoms();
 		boolean isleft = state_i[1] > 0;
 		boolean isRight = state_i[1] + 1 < maze.getRows();
 
@@ -78,11 +79,15 @@ public class MazeDomain implements Domain {
 				actions.add(new MazeAction("Move_DownRight"));
 			}
 		}
-		
-		if (isleft && (maze.getPoin(state_i[0], state_i[1] - 1) == maze.getEmpty()) || maze.getPoin(state_i[0], state_i[1] - 1) == this.maze.getCheese()){
+
+		if (isleft
+				&& (maze.getPoin(state_i[0], state_i[1] - 1) == maze.getEmpty())
+				|| maze.getPoin(state_i[0], state_i[1] - 1) == this.maze
+						.getCheese()) {
 			actions.add(new MazeAction("Move_Left"));
 		}
-		if (isRight && (maze.getPoin(state_i[0], state_i[1] + 1)== maze.getEmpty())){
+		if (isRight
+				&& (maze.getPoin(state_i[0], state_i[1] + 1) == maze.getEmpty())) {
 			actions.add(new MazeAction("Move_Right"));
 		}
 
@@ -91,28 +96,22 @@ public class MazeDomain implements Domain {
 
 	@Override
 	public Action getAction(State goal, State came_from) {
-		for(Action act: getActions(came_from)){
-			try {
-				if (goal.equals(act.doAction(came_from))){
-					return act;
-				}
-			} catch (IllegalActionExeption e) {
-	
-				e.printStackTrace();
+		for (Action act : getActions(came_from)) {
+			if (goal.equals(act.doAction(came_from))) {
+				return act;
 			}
 		}
 		return null;
-		
+
 	}
 
 	@Override
 	public double getRange(State s1, State s2) {
-		int [] pos1 = getPosition(s1);
-		int [] pos2 = getPosition(s2);
-		return (pos1[0] - pos2[0] != 0 && pos1[1] - pos2[1]  != 0) ? 15 : 10; 
+		int[] pos1 = getPosition(s1);
+		int[] pos2 = getPosition(s2);
+		return (pos1[0] - pos2[0] != 0 && pos1[1] - pos2[1] != 0) ? 15 : 10;
 	}
 
-	
 	private int[] getPosition(State state) {
 		int[] pos = new int[2];
 		pos[0] = Integer.parseInt((state.getState().split(","))[0]);
