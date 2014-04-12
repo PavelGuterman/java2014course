@@ -30,7 +30,6 @@ public class Astar extends AbsSearcher{
 	public ArrayList<Action> search(State start, State goal) {
 		start.setG(0);
 		start.setF(g.getDistance(start, start)+ h.getDistance(start, goal));
-//		start.setF(domain.g(start, start) + domain.h(start, goal));
 		getState_openList().add(start);
 		while(!getState_openList().isEmpty()){
 			State q = getState_openList().poll();
