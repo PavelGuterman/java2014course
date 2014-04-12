@@ -11,7 +11,7 @@ public class MazeDistance implements Distance {
 		int state_to[] = getPosition(to);
 		int row = Math.abs(state_to[0] - state_from[0]);
 		int col = Math.abs(state_to[1] - state_from[1]);
-		return Math.sqrt((col^2 + row^2));
+		return Math.sqrt((col^2 + row^2))*10;
 	}
 	
 	private int[] getPosition(State state) {

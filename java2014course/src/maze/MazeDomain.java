@@ -16,25 +16,25 @@ public class MazeDomain implements Domain {
 		this.maze = maze;
 	}
 
-	@Override
-	public double g(State from, State to) {
-		return to.getG() - from.getG();
-	}
-
-	@Override
-	public double h(State state, State goal) {
-		int state_i[] = getPosition(state);
-		int goal_i[] = getPosition(goal);
-
-		int d1 = state_i[0] - goal_i[0];
-		int d2 = state_i[1] - goal_i[1];
-		if (d1 < 0)
-			d1 *= -1;
-		if (d2 < 0)
-			d2 *= -1;
-
-		return d1 + d2;
-	}
+//	@Override
+//	public double g(State from, State to) {
+//		return to.getG() - from.getG();
+//	}
+//
+//	@Override
+//	public double h(State state, State goal) {
+//		int state_i[] = getPosition(state);
+//		int goal_i[] = getPosition(goal);
+//
+//		int d1 = state_i[0] - goal_i[0];
+//		int d2 = state_i[1] - goal_i[1];
+//		if (d1 < 0)
+//			d1 *= -1;
+//		if (d2 < 0)
+//			d2 *= -1;
+//
+//		return d1 + d2;
+//	}
 
 	@Override
 	public ArrayList<Action> getActions(State state) {

@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 import model.algorithms.Distance;
 import model.algorithms.Domain;
 import model.algorithms.Searcher;
 
-public class Model {
+public class Model implements Serializable {
 	
 	private Domain domain;
 	private Distance[] distances;
