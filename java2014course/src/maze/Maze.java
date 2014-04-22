@@ -87,7 +87,7 @@ public class Maze {
 				if (maze[i][j] == getMouse()) {
 					System.out.println("the Moise is in " + (i + "," + j));
 					return new State(0, 0, (i + "," + j));
-				}
+				} 
 			}
 		}
 		return null;
