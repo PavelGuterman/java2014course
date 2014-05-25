@@ -60,7 +60,7 @@ public class Astar extends AbsSearcher{
 				if(ten_g < q_tag.getG()){
 					q_tag.setG(ten_g);
 				}
-				q_tag.setF(q_tag.getG()+ domain.h(q_tag, goal));
+				q_tag.setF(q_tag.getG()+ h.getDistance(q_tag, goal));
 				if(!flag){
 					getState_openList().add(q_tag);
 				}
