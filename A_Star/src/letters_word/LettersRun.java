@@ -11,9 +11,9 @@ public class LettersRun {
 		LettersDistance letterG = new LettersDistance();
 		LettersDistance letterH = new LettersDistance();
 		Astar as=new Astar( new LetterDomain( letters), letterG, letterH );
-		ArrayList<Action> actions = as.search(letters.getStartState() , letters.getGoalState() );
-		for (Action a : actions)
-			System.out.println(a.getName());
+//		ArrayList<Action> actions = as.search(letters.getStartState() , letters.getGoalState() );
+//		for (Action a : actions)
+//			System.out.println(a.getName());
 
 	}
 
