@@ -1,14 +1,13 @@
 package maze;
 
-import java.lang.reflect.InvocationTargetException;
-import java.rmi.UnexpectedException;
+import java.io.Serializable;
 
 import model.algorithms.Action;
 import model.algorithms.State;
 import moveAction.mazeActionMove;
 import a_star.IllegalActionExeption;
 
-public class MazeAction implements Action {
+public class MazeAction implements Action ,Serializable{
 
 	private int action;
 	private final String[] actionsValid = new String[] { "Move_Up",

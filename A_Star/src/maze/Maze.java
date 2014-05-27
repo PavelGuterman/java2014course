@@ -73,6 +73,15 @@ public class Maze {
 		PrintMazeToConsole();
 	}
 
+	public Maze(int[][] board){
+		for (int  i = 0; i< board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				maze[j][i] = board[j][i];
+			}
+		}
+	}
+	
+	
 	public void PrintMazeToConsole() {
 		for (int i = 0; i < coloms; i++) {
 			for (int j = 0; j < rows; j++) {
@@ -104,6 +113,11 @@ public class Maze {
 			}
 		}
 		return null;
+	}
+
+	
+	public int[][] getMaze() {
+		return maze;
 	}
 
 }

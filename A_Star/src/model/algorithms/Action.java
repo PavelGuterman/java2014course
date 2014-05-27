@@ -1,7 +1,7 @@
 package model.algorithms;
 
 
-public interface Action {
+public interface Action{
 	State doAction(State state) ;
 	public String getName();
 }
